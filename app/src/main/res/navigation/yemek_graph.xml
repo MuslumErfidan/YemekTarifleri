@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/yemek_graph"
+    app:startDestination="@id/yemekSecimFragment">
+
+    <fragment
+        android:id="@+id/yemekSecimFragment"
+        android:name="com.example.yemeklerkitabi.view.YemekSecimFragment"
+        android:label="YemekSecimFragment" >
+        <action
+            android:id="@+id/action_yemekSecimFragment_to_yemekDetayFragment"
+            app:destination="@id/yemekDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yemekDetayFragment"
+        android:name="com.example.yemeklerkitabi.view.YemekDetayFragment"
+        android:label="YemekDetayFragment" >
+        <action
+            android:id="@+id/action_yemekDetayFragment_to_yemekSecimFragment"
+            app:destination="@id/yemekSecimFragment" />
+        <argument
+            android:name="yemekId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>

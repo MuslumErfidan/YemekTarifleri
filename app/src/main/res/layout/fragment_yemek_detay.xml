@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.YemekDetayFragment">
+
+    <ImageView
+        android:id="@+id/yemekResim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:minHeight="200dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_launcher_background"
+        android:layout_margin="10dp"></ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yemekIsim"
+        android:layout_below="@id/yemekResim"
+        android:text="Yemek İsmi"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yemekSure"
+        android:layout_below="@id/yemekIsim"
+        android:text="Yemek Süresi"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yemekKalori"
+        android:layout_below="@id/yemekSure"
+        android:text="Yemek Kalorisi"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yemekMalzemeler"
+        android:layout_below="@id/yemekKalori"
+        android:text="Yemek Malzemeleri"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yemekYapilis"
+        android:layout_below="@id/yemekMalzemeler"
+        android:text="Yemek Yapılışı"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        ></TextView>
+
+</RelativeLayout>
