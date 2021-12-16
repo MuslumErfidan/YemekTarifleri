@@ -3,9 +3,11 @@ package com.example.yemeklerkitabi.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yemeklerkitabi.R
 import com.example.yemeklerkitabi.model.Yemek
+import com.example.yemeklerkitabi.view.YemekSecimFragmentDirections
 import kotlinx.android.synthetic.main.yemek_recycler_row.view.*
 
 class YemekRecyclerAdapter(val yemekSecim : ArrayList<Yemek>) : RecyclerView.Adapter<YemekRecyclerAdapter.YemekViewHolder>() {
@@ -24,6 +26,11 @@ class YemekRecyclerAdapter(val yemekSecim : ArrayList<Yemek>) : RecyclerView.Ada
         holder.itemView.isim.text = yemekSecim.get(position).yemekIsim
         holder.itemView.sure.text = yemekSecim.get(position).yemekSure
         //gorsel kısmı eklenecek
+
+        holder.itemView.setOnClickListener {
+            val action = YemekSecimFragmentDirections.actionYemekSecimFragmentToYemekDetayFragment(0)
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

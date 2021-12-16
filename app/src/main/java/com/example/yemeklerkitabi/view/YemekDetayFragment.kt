@@ -5,11 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.yemeklerkitabi.R
+import com.example.yemeklerkitabi.viewmodel.YemekDetayViewModel
+import kotlinx.android.synthetic.main.fragment_yemek_detay.*
 
 
 class YemekDetayFragment : Fragment() {
 
+    private lateinit var viewModel : YemekDetayViewModel
     private var yemekId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +33,26 @@ class YemekDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProviders.of(this).get(YemekDetayViewModel::class.java)
+        viewModel.roomVerisiniAl()
+
         arguments?.let {
             yemekId = YemekDetayFragmentArgs.fromBundle(it).yemekId
             println(yemekId)
         }
 
+        observeLiveData()
+    }
 
+    fun observeLiveData(){
+        viewModel.yemekLiveData.observe(viewLifecycleOwner, Observer {yemek ->
+            yemek?.let {
+                yemekIsim.text = it.yemekIsim
+                yemekSure.text = it.yemekSure
+                yemekKalori.text = it.yemekKalori
+                yemekMalzemeler.text = it.yemekMalzemeler
+                yemekYapilis.text = it.yemekYapilis
+            }
+        })
     }
 }
