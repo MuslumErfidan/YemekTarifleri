@@ -41,6 +41,14 @@ class YemekSecimFragment : Fragment() {
         yemekSecimRecycler.layoutManager = LinearLayoutManager(context)
         yemekSecimRecycler.adapter = recyclerYemekAdapter
 
+        swipeRefreshLayout.setOnRefreshListener {
+            secimYukleniyor.visibility = View.VISIBLE
+            secimHataMesaji.visibility = View.GONE
+            yemekSecimRecycler.visibility = View.GONE
+            viewModel.refreshData()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
         observeLiveData()
     }
 
