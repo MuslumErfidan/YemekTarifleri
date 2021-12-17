@@ -3,41 +3,48 @@ package com.example.yemeklerkitabi.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.yemeklerkitabi.model.Yemek
+import com.example.yemeklerkitabi.servis.YemekAPIServis
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 
 class YemekSecimListesiViewModel : ViewModel() {
     val yemekler = MutableLiveData<List<Yemek>>()
     val yemekHataMesaji = MutableLiveData<Boolean>()
     val yemekYukleniyor = MutableLiveData<Boolean>()
 
+    private val yemekApiServis = YemekAPIServis()
+    private val disposable = CompositeDisposable()
+
     fun refreshData() {
-        val corba = Yemek("Çorba","20 dakika","70 kalori","fhdhfddsdshdgjjsdjs" +
-                "jfkldjfdjklfkldjfkl" +
-                "kjdfhdjkhfkdkdf" +
-                "fldjfkdjklfjdlfjl","gjdfkgfgkfgmgnmzçglkfgkljfgjgjljsdrıoujrıodjlkffmçfe","www.test.com")
-        val kofte = Yemek("Köfte","20 dakika","70 kalori","fhdhfddsdshdgjjsdjs" +
-                "jfkldjfdjklfkldjfkl" +
-                "kjdfhdjkhfkdkdf" +
-                "fldjfkdjklfjdlfjl","gjdfkgfgkfgmgnmzçglkfgkljfgjgjljsdrıoujrıodjlkffmçfe","www.test.com")
+        verileriInternettenAl()
+    }
 
-        val tavuk = Yemek("Tavuk","20 dakika","70 kalori","fhdhfddsdshdgjjsdjs" +
-                "jfkldjfdjklfkldjfkl" +
-                "kjdfhdjkhfkdkdf" +
-                "fldjfkdjklfjdlfjl","gjdfkgfgkfgmgnmzçglkfgkljfgjgjljsdrıoujrıodjlkffmçfe","www.test.com")
+    private fun verileriInternettenAl(){
+        yemekYukleniyor.value = true
 
-        val pilav = Yemek("Pilav","20 dakika","70 kalori","fhdhfddsdshdgjjsdjs" +
-                "jfkldjfdjklfkldjfkl" +
-                "kjdfhdjkhfkdkdf" +
-                "fldjfkdjklfjdlfjl","gjdfkgfgkfgmgnmzçglkfgkljfgjgjljsdrıoujrıodjlkffmçfe","www.test.com")
+        disposable.add(
+            yemekApiServis.getData()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<List<Yemek>>() {
+                    override fun onSuccess(t: List<Yemek>) {
+                        //Başarılı olursa
+                        yemekler.value = t
+                        yemekHataMesaji.value = false
+                        yemekYukleniyor.value = false
+                    }
 
-        val makarna = Yemek("makarna","20 dakika","70 kalori","fhdhfddsdshdgjjsdjs" +
-                "jfkldjfdjklfkldjfkl" +
-                "kjdfhdjkhfkdkdf" +
-                "fldjfkdjklfjdlfjl","gjdfkgfgkfgmgnmzçglkfgkljfgjgjljsdrıoujrıodjlkffmçfe","www.test.com")
+                    override fun onError(e: Throwable) {
+                        //Hata alırsak
+                        yemekHataMesaji.value = true
+                        yemekYukleniyor.value = false
+                        e.printStackTrace()
+                    }
 
-        val yemekListesi = arrayListOf<Yemek>(corba,kofte,tavuk,pilav,makarna)
-
-        yemekler.value = yemekListesi
-        yemekHataMesaji.value = false
-        yemekYukleniyor.value = false
+                })
+        )
     }
 }

@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/muslu/AndroidStudioProjects/YemeklerKitabi/app/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/muslu/AndroidStudioProjects/YemeklerKitabi/app/src/main/res/layout/fragment_yemek_detay.xml" value="0.22" />
+        <entry key="..\:/Users/muslu/AndroidStudioProjects/YemeklerKitabi/app/src/main/res/layout/fragment_yemek_detay.xml" value="0.25" />
         <entry key="..\:/Users/muslu/AndroidStudioProjects/YemeklerKitabi/app/src/main/res/layout/fragment_yemek_secim.xml" value="0.22" />
         <entry key="..\:/Users/muslu/AndroidStudioProjects/YemeklerKitabi/app/src/main/res/layout/yemek_recycler_row.xml" value="0.25" />
       </map>
