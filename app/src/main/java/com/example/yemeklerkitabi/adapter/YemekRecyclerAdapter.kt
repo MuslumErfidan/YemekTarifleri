@@ -29,7 +29,7 @@ class YemekRecyclerAdapter(val yemekSecim : ArrayList<Yemek>) : RecyclerView.Ada
         holder.itemView.sure.text = yemekSecim.get(position).yemekSure
 
         holder.itemView.setOnClickListener {
-            val action = YemekSecimFragmentDirections.actionYemekSecimFragmentToYemekDetayFragment(0)
+            val action = YemekSecimFragmentDirections.actionYemekSecimFragmentToYemekDetayFragment(yemekSecim.get(position).uuid)
             Navigation.findNavController(it).navigate(action)
         }
 

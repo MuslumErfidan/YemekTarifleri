@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.yemeklerkitabi.R
+import com.example.yemeklerkitabi.util.gorselIndır
+import com.example.yemeklerkitabi.util.placeholderYap
 import com.example.yemeklerkitabi.viewmodel.YemekDetayViewModel
 import kotlinx.android.synthetic.main.fragment_yemek_detay.*
 
@@ -33,13 +35,13 @@ class YemekDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(YemekDetayViewModel::class.java)
-        viewModel.roomVerisiniAl()
-
         arguments?.let {
             yemekId = YemekDetayFragmentArgs.fromBundle(it).yemekId
-            println(yemekId)
+
         }
+
+        viewModel = ViewModelProviders.of(this).get(YemekDetayViewModel::class.java)
+        viewModel.roomVerisiniAl(yemekId)
 
         observeLiveData()
     }
@@ -52,6 +54,9 @@ class YemekDetayFragment : Fragment() {
                 yemekKalori.text = it.yemekKalori
                 yemekMalzemeler.text = it.yemekMalzemeler
                 yemekYapilis.text = it.yemekYapilis
+                context?.let {
+                    yemekResim.gorselIndır(yemek.yemekGorsel, placeholderYap(it))
+                }
             }
         })
     }

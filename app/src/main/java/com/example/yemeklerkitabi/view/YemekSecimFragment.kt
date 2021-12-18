@@ -45,7 +45,7 @@ class YemekSecimFragment : Fragment() {
             secimYukleniyor.visibility = View.VISIBLE
             secimHataMesaji.visibility = View.GONE
             yemekSecimRecycler.visibility = View.GONE
-            viewModel.refreshData()
+            viewModel.refreshFromInternet()
             swipeRefreshLayout.isRefreshing = false
         }
 
