@@ -12,6 +12,7 @@ import com.example.yemeklerkitabi.R
 import com.example.yemeklerkitabi.adapter.YemekRecyclerAdapter
 import com.example.yemeklerkitabi.viewmodel.YemekSecimListesiViewModel
 import kotlinx.android.synthetic.main.fragment_yemek_secim.*
+import kotlinx.android.synthetic.main.fragment_yemek_turu.*
 
 
 class YemekSecimFragment : Fragment() {
@@ -34,6 +35,7 @@ class YemekSecimFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         viewModel = ViewModelProviders.of(this).get(YemekSecimListesiViewModel::class.java)
         viewModel.refreshData()

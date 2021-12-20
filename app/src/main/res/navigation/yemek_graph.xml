@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/yemek_graph"
-    app:startDestination="@id/yemekSecimFragment">
+    app:startDestination="@id/yemekTuruFragment">
 
     <fragment
         android:id="@+id/yemekSecimFragment"
@@ -21,6 +22,40 @@
             app:destination="@id/yemekSecimFragment" />
         <argument
             android:name="yemekId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/yemekTuruFragment"
+        android:name="com.example.yemeklerkitabi.view.YemekTuruFragment"
+        android:label="fragment_yemek_turu"
+        tools:layout="@layout/fragment_yemek_turu" >
+        <action
+            android:id="@+id/action_yemekTuruFragment_to_yemekSecimFragment"
+            app:destination="@id/yemekSecimFragment" />
+        <action
+            android:id="@+id/action_yemekTuruFragment_to_tatliListeFragment"
+            app:destination="@id/tatliListeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tatliListeFragment"
+        android:name="com.example.yemeklerkitabi.view.TatliListeFragment"
+        android:label="fragment_tatli_liste"
+        tools:layout="@layout/fragment_tatli_liste" >
+        <action
+            android:id="@+id/action_tatliListeFragment_to_tatliDetayFragment"
+            app:destination="@id/tatliDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tatliDetayFragment"
+        android:name="com.example.yemeklerkitabi.view.TatliDetayFragment"
+        android:label="fragment_tatli_detay"
+        tools:layout="@layout/fragment_tatli_detay" >
+        <action
+            android:id="@+id/action_tatliDetayFragment_to_tatliListeFragment"
+            app:destination="@id/tatliListeFragment" />
+        <argument
+            android:name="tatliId"
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
