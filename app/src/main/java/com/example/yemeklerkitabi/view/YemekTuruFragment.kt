@@ -33,5 +33,10 @@ class YemekTuruFragment : Fragment() {
             val action = YemekTuruFragmentDirections.actionYemekTuruFragmentToYemekSecimFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        tatli_liste_button.setOnClickListener {
+            val action = YemekTuruFragmentDirections.actionYemekTuruFragmentToTatliListeFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }
