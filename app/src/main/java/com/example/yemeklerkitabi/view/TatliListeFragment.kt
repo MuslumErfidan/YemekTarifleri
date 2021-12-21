@@ -46,7 +46,7 @@ class TatliListeFragment : Fragment() {
             secimYukleniyor2.visibility = View.VISIBLE
             secimHataMesaji2.visibility = View.GONE
             tatliSecimRecycler.visibility = View.GONE
-            viewModel.refreshData()
+            viewModel.refreshFromInternet()
             swipeRefreshLayout2.isRefreshing = false
         }
 

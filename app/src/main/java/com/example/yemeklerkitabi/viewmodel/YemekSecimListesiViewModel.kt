@@ -58,7 +58,7 @@ class YemekSecimListesiViewModel(application: Application) : BaseViewModel(appli
                 .subscribeWith(object : DisposableSingleObserver<List<Yemek>>() {
                     override fun onSuccess(t: List<Yemek>) {
                         sqliteSakla(t)
-                        Toast.makeText(getApplication(),"Yemekleri Internet'ten Aldık",Toast.LENGTH_LONG).show()
+                        Toast.makeText(getApplication(),"Yemekleri İnternet'ten Aldık",Toast.LENGTH_LONG).show()
                     }
 
                     override fun onError(e: Throwable) {

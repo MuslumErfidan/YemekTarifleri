@@ -8,6 +8,7 @@ import com.example.yemeklerkitabi.servis.YemekDatabase
 import kotlinx.coroutines.launch
 
 class YemekDetayViewModel(application: Application) : BaseViewModel(application) {
+
     val yemekLiveData = MutableLiveData<Yemek>()
 
     fun roomVerisiniAl(uuid: Int){

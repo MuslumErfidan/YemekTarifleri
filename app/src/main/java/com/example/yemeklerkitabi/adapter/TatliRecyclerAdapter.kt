@@ -26,15 +26,13 @@ class TatliRecyclerAdapter(val tatliListesi: ArrayList<Tatli>) : RecyclerView.Ad
     override fun onBindViewHolder(holder: TatliViewHolder, position: Int) {
         holder.itemView.isim2.text = tatliListesi.get(position).tatliIsim
         holder.itemView.sure2.text = tatliListesi.get(position).tatliSure
-        //gorsel kısmı eklenecek
 
         holder.itemView.setOnClickListener {
-            val action = TatliListeFragmentDirections.actionTatliListeFragmentToTatliDetayFragment(0)
+            val action = TatliListeFragmentDirections.actionTatliListeFragmentToTatliDetayFragment(tatliListesi.get(position).uuid2)
             Navigation.findNavController(it).navigate(action)
         }
 
-        holder.itemView.imageView2.gorselIndır(tatliListesi.get(position).tatliGorsel,
-            placeholderYap(holder.itemView.context))
+        holder.itemView.imageView2.gorselIndır(tatliListesi.get(position).tatliGorsel, placeholderYap(holder.itemView.context))
     }
 
     override fun getItemCount(): Int {

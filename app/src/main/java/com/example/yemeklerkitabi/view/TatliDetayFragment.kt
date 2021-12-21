@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.example.yemeklerkitabi.R
+import com.example.yemeklerkitabi.util.gorselIndır
+import com.example.yemeklerkitabi.util.placeholderYap
 import com.example.yemeklerkitabi.viewmodel.TatliDetayViewModel
 import kotlinx.android.synthetic.main.fragment_tatli_detay.*
 
@@ -34,13 +36,13 @@ class TatliDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(TatliDetayViewModel::class.java)
-        viewModel.roomVerisiniAl()
-
         arguments?.let {
             tatliId = TatliDetayFragmentArgs.fromBundle(it).tatliId
-            println(tatliId)
         }
+
+        viewModel = ViewModelProviders.of(this).get(TatliDetayViewModel::class.java)
+        viewModel.roomVerisiniAl(tatliId)
+
 
         observeLiveData()
     }
@@ -53,6 +55,9 @@ class TatliDetayFragment : Fragment() {
                 tatliKalori.text = it.tatliKalori
                 tatliMalzemeler.text = it.tatliMalzemeler
                 tatliYapilis.text = it.tatliYapilis
+                context?.let {
+                    tatliResim.gorselIndır(tatli.tatliGorsel, placeholderYap(it))
+                }
             }
         })
     }
