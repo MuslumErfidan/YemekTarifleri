@@ -6,8 +6,8 @@ import retrofit2.http.GET
 
 interface YemekAPI {
 
-    //https://raw.githubusercontent.com/MuslumErfidan/OrnekJSON/main/corbalar.json
+    //https://raw.githubusercontent.com/MuslumErfidan/YemekTarifleriData/main/CorbalarData/corbalar.json
 
-    @GET("MuslumErfidan/OrnekJSON/main/corbalar.json")
+    @GET("MuslumErfidan/YemekTarifleriData/main/CorbalarData/corbalar.json")
     fun getYemek() : Single<List<Yemek>>
 }
