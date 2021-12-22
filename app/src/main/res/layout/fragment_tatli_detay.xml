@@ -38,7 +38,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Yemek İsmi"
+            android:text="Tatlı İsmi"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
@@ -52,7 +52,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Yemek Süresi"
+            android:text="Tatlı Süresi"
             android:textSize="20sp"></TextView>
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tatliKalori"
             android:layout_below="@id/tatliSure"
-            android:text="Yemek Kalorisi"
+            android:text="Tatlı Kalorisi"
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_margin="8dp"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tatliMalzemeler"
             android:layout_below="@id/tatliKalori"
-            android:text="Yemek Malzemeleri"
+            android:text="Tatlı Malzemeleri"
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_margin="8dp"
@@ -87,7 +87,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Yemek Yapılışı"
+            android:text="Tatlı Yapılışı"
             android:textSize="20sp"></TextView>
 
     </RelativeLayout>

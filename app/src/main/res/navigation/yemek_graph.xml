@@ -36,6 +36,12 @@
         <action
             android:id="@+id/action_yemekTuruFragment_to_tatliListeFragment"
             app:destination="@id/tatliListeFragment" />
+        <action
+            android:id="@+id/action_yemekTuruFragment_to_salataListeFragment"
+            app:destination="@id/salataListeFragment" />
+        <action
+            android:id="@+id/action_yemekTuruFragment_to_anayemekListeFragment"
+            app:destination="@id/anayemekListeFragment" />
     </fragment>
     <fragment
         android:id="@+id/tatliListeFragment"
@@ -56,6 +62,50 @@
             app:destination="@id/tatliListeFragment" />
         <argument
             android:name="tatliId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/salataListeFragment"
+        android:name="com.example.yemeklerkitabi.view.SalataListeFragment"
+        android:label="fragment_salata_liste"
+        tools:layout="@layout/fragment_salata_liste" >
+        <action
+            android:id="@+id/action_salataListeFragment_to_salataDetayFragment"
+            app:destination="@id/salataDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/salataDetayFragment"
+        android:name="com.example.yemeklerkitabi.view.SalataDetayFragment"
+        android:label="fragment_salata_detay"
+        tools:layout="@layout/fragment_salata_detay" >
+        <action
+            android:id="@+id/action_salataDetayFragment_to_salataListeFragment"
+            app:destination="@id/salataListeFragment" />
+        <argument
+            android:name="salataId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/anayemekListeFragment"
+        android:name="com.example.yemeklerkitabi.view.AnayemekListeFragment"
+        android:label="fragment_anayemek_liste"
+        tools:layout="@layout/fragment_anayemek_liste" >
+        <action
+            android:id="@+id/action_anayemekListeFragment_to_anayemekDetayFragment"
+            app:destination="@id/anayemekDetayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/anayemekDetayFragment"
+        android:name="com.example.yemeklerkitabi.view.AnayemekDetayFragment"
+        android:label="fragment_anayemek_detay"
+        tools:layout="@layout/fragment_anayemek_detay" >
+        <action
+            android:id="@+id/action_anayemekDetayFragment_to_anayemekListeFragment"
+            app:destination="@id/anayemekListeFragment" />
+        <argument
+            android:name="anayemekId"
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>
