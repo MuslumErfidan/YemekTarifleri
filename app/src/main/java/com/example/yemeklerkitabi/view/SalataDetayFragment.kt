@@ -5,11 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.yemeklerkitabi.R
+import com.example.yemeklerkitabi.viewmodel.SalataDetayViewModel
+import kotlinx.android.synthetic.main.fragment_salata_detay.*
 
 
 class SalataDetayFragment : Fragment() {
 
+    private lateinit var viewModel : SalataDetayViewModel
     private var salataId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +33,25 @@ class SalataDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProviders.of(this).get(SalataDetayViewModel::class.java)
+        viewModel.roomVerisiniAl()
+
         arguments?.let {
             salataId = SalataDetayFragmentArgs.fromBundle(it).salataId
         }
+
+        observeLiveData()
+    }
+
+    fun observeLiveData(){
+        viewModel.salataLiveData.observe(viewLifecycleOwner, Observer { salata ->
+            salata?.let {
+                salataIsim.text = it.salataIsım
+                salataSure.text = it.salataSure
+                salataKalori.text = it.salataKalori
+                salataMalzemeler.text = it.salataMalzemeler
+                salataYapilis.text = it.salataYapilis
+            }
+        })
     }
 }

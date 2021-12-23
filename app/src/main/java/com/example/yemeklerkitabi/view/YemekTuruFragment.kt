@@ -38,5 +38,15 @@ class YemekTuruFragment : Fragment() {
             val action = YemekTuruFragmentDirections.actionYemekTuruFragmentToTatliListeFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        salata_liste_button.setOnClickListener {
+            val action = YemekTuruFragmentDirections.actionYemekTuruFragmentToSalataListeFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
+        anayemek_liste_button.setOnClickListener {
+            val action = YemekTuruFragmentDirections.actionYemekTuruFragmentToAnayemekListeFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 }
