@@ -3,20 +3,45 @@ package com.example.yemeklerkitabi.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.yemeklerkitabi.model.Anayemek
+import com.example.yemeklerkitabi.servis.AnayemekAPIServis
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 
 class AnayemekListesiViewModel : ViewModel() {
     val anayemekler = MutableLiveData<List<Anayemek>>()
     val anayemekHataMesaji = MutableLiveData<Boolean>()
     val anayemekYukleniyor = MutableLiveData<Boolean>()
 
+    private val anayemekApiServis = AnayemekAPIServis()
+    private val disposable = CompositeDisposable()
+
     fun refreshData(){
-        val muz = Anayemek("fkdjfdfj","4","fgfgf","fsdf","rerere","tyty")
-        val elma = Anayemek("fkdjfdfj","4","fgfgf","fsdf","rerere","tyty")
+        verileriInternettenAl()
+    }
 
-        val anayemekListesi = arrayListOf<Anayemek>(muz,elma)
+    private fun verileriInternettenAl(){
+        anayemekYukleniyor.value = true
 
-        anayemekler.value = anayemekListesi
-        anayemekHataMesaji.value = false
-        anayemekYukleniyor.value = false
+        disposable.add(
+            anayemekApiServis.getData()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<List<Anayemek>>(){
+                    override fun onSuccess(t: List<Anayemek>) {
+                        anayemekler.value = t
+                        anayemekHataMesaji.value = false
+                        anayemekYukleniyor.value = false
+                    }
+
+                    override fun onError(e: Throwable) {
+                        anayemekHataMesaji.value = true
+                        anayemekYukleniyor.value = false
+                        e.printStackTrace()
+                    }
+
+                })
+        )
     }
 }
