@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.yemeklerkitabi.R
+import com.example.yemeklerkitabi.util.gorselIndır
+import com.example.yemeklerkitabi.util.placeholderYap
 import com.example.yemeklerkitabi.viewmodel.AnayemekDetayViewModel
 import kotlinx.android.synthetic.main.fragment_anayemek_detay.*
 
@@ -33,12 +35,12 @@ class AnayemekDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(AnayemekDetayViewModel::class.java)
-        viewModel.roomVerisiniAl()
-
         arguments?.let {
             anayemekId = AnayemekDetayFragmentArgs.fromBundle(it).anayemekId
         }
+
+        viewModel = ViewModelProviders.of(this).get(AnayemekDetayViewModel::class.java)
+        viewModel.roomVerisiniAl(anayemekId)
 
         observeLiveData()
     }
@@ -51,6 +53,9 @@ class AnayemekDetayFragment : Fragment() {
                 anayemekKalori.text = it.anayemekKalori
                 anayemekMalzemeler.text = it.anayemekMalzemeler
                 anayemekYapilis.text = it.anayemekYapilis
+                context?.let {
+                    anayemekResim.gorselIndır(anayemek.anayemekGorsel, placeholderYap(it))
+                }
             }
         })
     }

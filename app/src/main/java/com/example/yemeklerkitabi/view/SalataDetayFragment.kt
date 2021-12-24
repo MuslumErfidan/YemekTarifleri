@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.yemeklerkitabi.R
+import com.example.yemeklerkitabi.util.gorselIndır
+import com.example.yemeklerkitabi.util.placeholderYap
 import com.example.yemeklerkitabi.viewmodel.SalataDetayViewModel
 import kotlinx.android.synthetic.main.fragment_salata_detay.*
 
@@ -33,12 +35,12 @@ class SalataDetayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(SalataDetayViewModel::class.java)
-        viewModel.roomVerisiniAl()
-
         arguments?.let {
             salataId = SalataDetayFragmentArgs.fromBundle(it).salataId
         }
+
+        viewModel = ViewModelProviders.of(this).get(SalataDetayViewModel::class.java)
+        viewModel.roomVerisiniAl(salataId)
 
         observeLiveData()
     }
@@ -51,6 +53,9 @@ class SalataDetayFragment : Fragment() {
                 salataKalori.text = it.salataKalori
                 salataMalzemeler.text = it.salataMalzemeler
                 salataYapilis.text = it.salataYapilis
+                context?.let {
+                    salataResim.gorselIndır(salata.salataGorsel, placeholderYap(it))
+                }
             }
         })
     }

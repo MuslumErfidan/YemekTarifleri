@@ -41,6 +41,14 @@ class SalataListeFragment : Fragment() {
         salataSecimRecycler.layoutManager = LinearLayoutManager(context)
         salataSecimRecycler.adapter = recyclerSalataAdapter
 
+        swipeRefreshLayout3.setOnRefreshListener {
+            secimYukleniyor3.visibility = View.VISIBLE
+            secimHataMesaji3.visibility = View.GONE
+            salataSecimRecycler.visibility = View.GONE
+            viewModel.refreshFromInternet()
+            swipeRefreshLayout3.isRefreshing = false
+        }
+
         observeLiveData()
     }
 

@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yemeklerkitabi.R
 import com.example.yemeklerkitabi.model.Anayemek
+import com.example.yemeklerkitabi.util.gorselIndır
+import com.example.yemeklerkitabi.util.placeholderYap
 import com.example.yemeklerkitabi.view.AnayemekListeFragmentDirections
 import kotlinx.android.synthetic.main.anayemek_recycler_row.view.*
 
@@ -22,12 +24,13 @@ class AnayemekRecyclerAdapter(val anayemekListesi: ArrayList<Anayemek>) : Recycl
     override fun onBindViewHolder(holder: AnayemekViewHolder, position: Int) {
         holder.itemView.isim4.text = anayemekListesi.get(position).anayemekIsım
         holder.itemView.sure4.text = anayemekListesi.get(position).anayemekSure
-        //gorsel
 
         holder.itemView.setOnClickListener {
-            val action = AnayemekListeFragmentDirections.actionAnayemekListeFragmentToAnayemekDetayFragment(0)
+            val action = AnayemekListeFragmentDirections.actionAnayemekListeFragmentToAnayemekDetayFragment(anayemekListesi.get(position).uuid4)
             Navigation.findNavController(it).navigate(action)
         }
+
+        holder.itemView.imageView4.gorselIndır(anayemekListesi.get(position).anayemekGorsel, placeholderYap(holder.itemView.context))
     }
 
     override fun getItemCount(): Int {

@@ -44,7 +44,7 @@ class YemekSecimListesiViewModel(application: Application) : BaseViewModel(appli
         launch {
             val yemekListesi = YemekDatabase(getApplication()).yemekDao().getAllYemek()
             yemekleriGoster(yemekListesi)
-            Toast.makeText(getApplication(),"Yemekleri Room'dan Aldık",Toast.LENGTH_LONG).show()
+            Toast.makeText(getApplication(),"Çorbaları Room'dan Aldık",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -58,7 +58,7 @@ class YemekSecimListesiViewModel(application: Application) : BaseViewModel(appli
                 .subscribeWith(object : DisposableSingleObserver<List<Yemek>>() {
                     override fun onSuccess(t: List<Yemek>) {
                         sqliteSakla(t)
-                        Toast.makeText(getApplication(),"Yemekleri İnternet'ten Aldık",Toast.LENGTH_LONG).show()
+                        Toast.makeText(getApplication(),"Çorbaları İnternet'ten Aldık",Toast.LENGTH_LONG).show()
                     }
 
                     override fun onError(e: Throwable) {

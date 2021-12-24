@@ -42,6 +42,14 @@ class AnayemekListeFragment : Fragment() {
         anayemekSecimRecycler.layoutManager = LinearLayoutManager(context)
         anayemekSecimRecycler.adapter = recyclerAnayemekAdapter
 
+        swipeRefreshLayout4.setOnRefreshListener {
+            secimYukleniyor4.visibility = View.VISIBLE
+            secimHataMesaji4.visibility = View.GONE
+            anayemekSecimRecycler.visibility = View.GONE
+            viewModel.refreshFromInternet()
+            swipeRefreshLayout4.isRefreshing = false
+        }
+
         observeLiveData()
     }
 

@@ -7,6 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yemeklerkitabi.R
 import com.example.yemeklerkitabi.model.Salata
+import com.example.yemeklerkitabi.util.gorselIndır
+import com.example.yemeklerkitabi.util.placeholderYap
 import com.example.yemeklerkitabi.view.SalataListeFragmentDirections
 import kotlinx.android.synthetic.main.salata_recycler_row.view.*
 
@@ -24,12 +26,13 @@ class SalataRecyclerAdapter(val salataListesi : ArrayList<Salata>) : RecyclerVie
     override fun onBindViewHolder(holder: SalataViewHolder, position: Int) {
         holder.itemView.isim3.text = salataListesi.get(position).salataIsım
         holder.itemView.sure3.text = salataListesi.get(position).salataSure
-        //gorsel
 
         holder.itemView.setOnClickListener {
-            val action = SalataListeFragmentDirections.actionSalataListeFragmentToSalataDetayFragment(0)
+            val action = SalataListeFragmentDirections.actionSalataListeFragmentToSalataDetayFragment(salataListesi.get(position).uuid3)
             Navigation.findNavController(it).navigate(action)
         }
+
+        holder.itemView.imageView3.gorselIndır(salataListesi.get(position).salataGorsel, placeholderYap(holder.itemView.context))
     }
 
     override fun getItemCount(): Int {

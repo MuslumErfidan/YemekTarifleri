@@ -1,15 +1,20 @@
 package com.example.yemeklerkitabi.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.yemeklerkitabi.model.Anayemek
+import com.example.yemeklerkitabi.servis.AnayemekDatabase
+import kotlinx.coroutines.launch
 
-class AnayemekDetayViewModel : ViewModel() {
+class AnayemekDetayViewModel(application: Application) : BaseViewModel(application) {
 
     val anayemekLiveData = MutableLiveData<Anayemek>()
 
-    fun roomVerisiniAl(){
-        val muz = Anayemek("fkdjfdfj","4","fgfgf","fsdf","rerere","tyty")
-        anayemekLiveData.value = muz
+    fun roomVerisiniAl(uuid4: Int){
+        launch {
+            val dao = AnayemekDatabase(getApplication()).anayemekDao()
+            val anayemek = dao.getAnayemek(uuid4)
+            anayemekLiveData.value = anayemek
+        }
     }
 }
